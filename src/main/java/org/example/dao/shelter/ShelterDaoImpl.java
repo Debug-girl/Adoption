@@ -155,7 +155,7 @@ public class ShelterDaoImpl implements IShelterDao {
                 insertPs.close();
             }
 
-            adopter.addAdoptPet();
+            adopter.addAdoptPet(pet);
 
             updatePs.close();
             DBUtil.closeConnection(connection);
