@@ -1,28 +1,19 @@
 package org.example.domain;
 
 public abstract class Person {
-    private int personID;
-    private String username;
-    private String password;
 
-    // 构造函数
+    protected int id;
+    protected String username;
+    protected String password;
 
-    public Person(int personID, String username, String password) {
-        this.personID = personID;
+    public Person(int id,String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
     }
 
     public Person() {
 
-    }
-
-    public int getPersonID() {
-        return personID;
-    }
-
-    public void setPersonID(int personID) {
-        this.personID = personID;
     }
 
     public String getUsername() {
@@ -41,7 +32,21 @@ public abstract class Person {
         this.password = password;
     }
 
-    public boolean login(String inputUsername, String inputPassword) {
-        return this.username.equals(inputUsername) && this.password.equals(inputPassword);
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
 }

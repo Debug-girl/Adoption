@@ -2,15 +2,15 @@ package org.example.domain;
 
 public class BasicInfo{
     @SuppressWarnings("unused")
-    private int petNum;
-    private String petName;
+    private int petNum;//编号
+    private String petName;//昵称
     private String petCategory;  //宠物类别
     @SuppressWarnings("unused")
     private int petAge;
     private String petSex;
     private float petWeight;
-    private String petInfo;
-    private String petStatus;
+    private String petInfo;//简介
+    private String petStatus;//领养状态
 
     public BasicInfo(int petNum, String petName, String petCategory, int petAge, String petSex, float petWeight, String petInfo,String petStatus) {
         this.petNum = petNum;

@@ -3,38 +3,22 @@ package org.example.domain;
 import java.util.ArrayList;
 
 public class Administrator extends Person{
-    private int adminID;
-    private String adminName;
-    private String password;
-    ArrayList<BasicInfo> petInfo = new ArrayList<>();
-    ArrayList<Adopter> adopterInfo = new ArrayList<>();
 
-
-
-    public Administrator(String adminName, String password) {
-        this.adminName = adminName;
-        this.password = password;
+    public Administrator(int id, String username, String password) {
+        super(id, username, password);
     }
 
-    public Administrator() {
+    Administrator(){
+        super();
     }
 
-    public String getAdminName() {
-        return adminName;
+    @Override
+    public String toString() {
+        return "Administrator{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
-
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
 
 }

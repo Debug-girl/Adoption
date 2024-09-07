@@ -5,38 +5,17 @@ import org.example.domain.BasicInfo;
 import java.util.ArrayList;
 
 public class Adopter extends Person{
-    private int adopterID;
-    private String name;
-    private String password;
+
     private String address;
     ArrayList<BasicInfo> adopInfo = new ArrayList<>();
 
     public Adopter() {
-
+        super();
     }
 
     public Adopter(int adopterID,String name,String password,String address) {
-        super();
-        this.adopterID = adopterID;
-        this.name = name;
-        this.password = password;
+        super(adopterID,name,password);
         this.address = address;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAdopterID() {
-        return adopterID;
-    }
-
-    public void setAdopterID(int adopterID) {
-        this.adopterID = adopterID;
     }
 
     public String getAddress() {
@@ -48,30 +27,21 @@ public class Adopter extends Person{
     }
 
     public void addAdoptAnimal(BasicInfo basicInfo){
-
+        this.adopInfo.add(basicInfo);
     }
 
     public void displayAdoptionInfo(){
 
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "Adopter{" +
-                "adopterID=" + adopterID +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
+                "address='" + address + '\'' +
                 ", adopInfo=" + adopInfo +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
-
 }
