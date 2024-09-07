@@ -1,7 +1,6 @@
 package org.example.dao;
 
 import org.example.domain.Adopter;
-import org.example.domain.Person;
 import org.example.util.DBUtil;
 
 import java.sql.Connection;
@@ -9,38 +8,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDaoImpl implements IUserDao {
+public class AdopterDaoImpl implements IAdopterDao {
 
     @Override
-    public void register(Person person , int choice) {
-
+    public boolean register(String name,String password,String address) {
         try {
             Connection connection = DBUtil.getConnection();
-            String sql = "";   //= "insert into adopter values(?,?,?,?)";
-
-            switch (choice){
-                case 1 : sql = "insert into adopter values(?,?,?)";break;
-
-                case 2 : sql = "insert into administrator values(?,?,?)";break;
-
-                default: System.err.println("无效的用户类型选择!");
-            }
-
+            String sql = "insert into adopter (name, password, address) values (?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-
-            ps.setString(1,person.getUsername());
-            ps.setString(2,person.getPassword());
-
+            ps.setString(1,name);
+            ps.setString(2,password);
+            ps.setString(3,address);
             ps.execute();
+            DBUtil.closeConnection(connection);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
             //System.out.println(throwables.getErrorCode());
             if(throwables.getErrorCode() == 1062){
-                System.err.println("用户信息重复!");
+                System.err.println("用户名已经存在!");
+            }else{
+                throwables.printStackTrace();
             }
+            return false;
         }
-
-
+        return true;
     }
 
     @Override
@@ -50,27 +40,21 @@ public class UserDaoImpl implements IUserDao {
             Connection connection = DBUtil.getConnection();
             String sql = "SELECT * FROM adopter WHERE name = ? AND password = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-
-            // 设置参数
             ps.setString(1, name);
             ps.setString(2, password);
-
-            // 执行查询
             ResultSet rs = ps.executeQuery();
 
-            // 检查结果
             if (rs.next()) {
-                // 如果找到了匹配的记录，将结果封装到 Adopter 对象中
                 loggedInAdopter = new Adopter();
-                loggedInAdopter.setAdopterID(rs.getInt("adopterID"));
+                loggedInAdopter.setId(rs.getInt("adopterID"));
                 loggedInAdopter.setName(rs.getString("name"));
                 loggedInAdopter.setPassword(rs.getString("password"));
                 loggedInAdopter.setAddress(rs.getString("address"));
             } else {
-                // 没有匹配记录，打印错误信息
                 System.err.println("用户名或密码错误！");
             }
 
+            DBUtil.closeConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -104,11 +88,12 @@ public class UserDaoImpl implements IUserDao {
 
             if (rowsAffected > 0) {
                 System.out.println("密码更新成功！");
-                adopter.setPassword(newPassword); // 更新内存中的密码
+                adopter.setPassword(newPassword);
             } else {
                 System.err.println("密码更新失败！");
                 adopter = null;
             }
+            DBUtil.closeConnection(connection);
         } catch (SQLException e) {
             e.printStackTrace();
             adopter = null;

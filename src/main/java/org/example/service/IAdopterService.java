@@ -2,9 +2,11 @@ package org.example.service;
 
 import org.example.domain.Adopter;
 
-public interface IUesrService {
+public interface IAdopterService {
 
-    public void addAdopter(Adopter adopter);
+    public boolean register(String name, String password,String address);
+
     public Adopter login(String name, String password);
+
     public void updatePassword(String name,String password,String newPassword);
 }

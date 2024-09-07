@@ -3,12 +3,12 @@ package org.example.domain;
 public abstract class Person {
 
     protected int id;
-    protected String username;
+    protected String name;
     protected String password;
 
     public Person(int id,String username, String password) {
         this.id = id;
-        this.username = username;
+        this.name = username;
         this.password = password;
     }
 
@@ -16,12 +16,12 @@ public abstract class Person {
 
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -44,7 +44,7 @@ public abstract class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

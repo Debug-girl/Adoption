@@ -1,7 +1,5 @@
 package org.example.domain;
 
-import org.example.domain.BasicInfo;
-
 import java.util.ArrayList;
 
 public class Adopter extends Person{
@@ -40,7 +38,7 @@ public class Adopter extends Person{
                 "address='" + address + '\'' +
                 ", adopInfo=" + adopInfo +
                 ", id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

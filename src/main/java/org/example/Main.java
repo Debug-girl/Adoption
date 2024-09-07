@@ -1,10 +1,11 @@
 package org.example;
 
-import org.example.dao.IUserDao;
-import org.example.dao.UserDaoImpl;
+import org.example.domain.Administrator;
 import org.example.domain.Adopter;
-import org.example.service.IUesrService;
-import org.example.service.UserService;
+import org.example.service.AdministratorService;
+import org.example.service.IAdministratorService;
+import org.example.service.IAdopterService;
+import org.example.service.AdopterService;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -15,43 +16,50 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        IUesrService us =new UserService();
-
-        System.out.println("请输入账号：");
+        System.out.print("请输入账号:");
         String name = sc.next();
-        System.out.println("请输入密码：");
+        System.out.print("请输入密码:");
         String password = sc.next();
 
-//        Adopter adopter = new Adopter();
-//
-//        adopter.setName(name);
-//        adopter.setPassword(password);
+        //测试领养者登录
+        /*IAdopterService adopterService = new AdopterService();
+        Adopter adopter = adopterService.login(name,password);
+        if(adopter != null){
+            System.out.println("领养者登录成功");
+        }else{
+            System.out.println("账号或者密码错误");
+        }*/
 
-       Adopter login = us.login(name,password);
+        //测试领养者注册
+        IAdopterService adopterService = new AdopterService();
+        if(adopterService.register("orange","123","湖北荆州")){
+            System.out.println("用户注册成功!");
+        }
 
-        if(login!=null){
-            System.out.println("登录成功");
+        //测试管理员登录
+        IAdministratorService administratorService = new AdministratorService();
+        Administrator administrator = administratorService.login(name,password);
+        if(administrator != null){
+            System.out.println("管理员登录成功");
         }else{
             System.out.println("账号或者密码错误");
         }
 
+        //测试打印获取所有用户
+        for(Adopter adopter : administratorService.getAllAdopters()){
+            System.out.println(adopter.toString());
+        }
 
-//      注册测试
-//      Adopter adopter = new Adopter(2,"banana","456","湖北黄石");
-//      userDao.addAdopter(adopter);
+        //测试删除用户 根据ID
+        /*System.out.print("输入删除用户的ID:");
+        int deleteId = sc.nextInt();
+        administratorService.deleteAdopter(deleteId);*/
 
-//      登录测试
-//     Adopter loginUser = userDao.login("apple","123456");
-//
-//      if(loginUser != null){
-//          System.out.println(loginUser.toString());
-//      }
-
-        //更新用户密码 测试
-       // userDao.updatePassword("banana","456","456789");
-
+        //测试删除用户 根据name
+        System.out.print("输出删除用户的name:");
+        String deleteName = sc.next();
+        administratorService.deleteAdopter(deleteName);
 
     }
-
 
 }
