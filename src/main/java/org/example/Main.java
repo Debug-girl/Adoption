@@ -67,6 +67,7 @@ public class Main {
         for(Pet pet : shelterService.getAllPets()){
             System.out.println(pet.toString());
         }
+        System.out.println("hello");
 
     }
 
