@@ -1,7 +1,7 @@
-package org.example.service;
+package org.example.service.administrator;
 
-import org.example.dao.AdminDaoImpl;
-import org.example.dao.IAdminDao;
+import org.example.dao.admin.AdminDaoImpl;
+import org.example.dao.admin.IAdminDao;
 import org.example.domain.Administrator;
 import org.example.domain.Adopter;
 

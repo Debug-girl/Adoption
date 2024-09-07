@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.service.administrator;
 
 import org.example.domain.Administrator;
 import org.example.domain.Adopter;

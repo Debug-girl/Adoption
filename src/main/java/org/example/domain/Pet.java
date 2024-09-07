@@ -1,8 +1,8 @@
 package org.example.domain;
 
-public class BasicInfo{
+public class Pet {
     @SuppressWarnings("unused")
-    private int petNum;//编号
+    private int petID;//编号
     private String petName;//昵称
     private String petCategory;  //宠物类别
     @SuppressWarnings("unused")
@@ -12,8 +12,8 @@ public class BasicInfo{
     private String petInfo;//简介
     private String petStatus;//领养状态
 
-    public BasicInfo(int petNum, String petName, String petCategory, int petAge, String petSex, float petWeight, String petInfo,String petStatus) {
-        this.petNum = petNum;
+    public Pet(int petID, String petName, String petCategory, int petAge, String petSex, float petWeight, String petInfo, String petStatus) {
+        this.petID = petID;
         this.petName = petName;
         this.petCategory = petCategory;
         this.petAge = petAge;
@@ -23,19 +23,16 @@ public class BasicInfo{
         this.petStatus = petStatus;
     }
 
-    public BasicInfo() {
+    public Pet() {
+
     }
 
-    public BasicInfo(int id, String name, String category, int age, String status) {
+    public int getPetID() {
+        return petID;
     }
 
-
-    public int getPetNum() {
-        return petNum;
-    }
-
-    public void setPetNum(int petNum) {
-        this.petNum = petNum;
+    public void setPetID(int petID) {
+        this.petID = petID;
     }
 
     public String getPetName() {
@@ -96,7 +93,7 @@ public class BasicInfo{
 
     public void displayInfo(){
         System.out.println("-----------------------------");
-        System.out.println("Pet Number: " + petNum);
+        System.out.println("Pet Number: " + petID);
         System.out.println("Pet Name: " + petName);
         System.out.println("Pet Category: " + petCategory);
         System.out.println("Pet Age: " + petAge);
@@ -110,7 +107,7 @@ public class BasicInfo{
     @Override
     public String toString() {
         return "BasicInfo{" +
-                "petNum=" + petNum +
+                "petNum=" + petID +
                 ", petName='" + petName + '\'' +
                 ", petCategory='" + petCategory + '\'' +
                 ", petAge=" + petAge +

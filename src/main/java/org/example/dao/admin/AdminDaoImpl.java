@@ -1,4 +1,4 @@
-package org.example.dao;
+package org.example.dao.admin;
 
 import org.example.domain.Administrator;
 import org.example.domain.Adopter;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AdminDaoImpl implements IAdminDao{
+public class AdminDaoImpl implements IAdminDao {
     
     @Override
     public Administrator login(String name, String password) {

@@ -1,25 +1,24 @@
 package org.example.domain;
 
-import org.example.domain.Adopter;
-import org.example.domain.BasicInfo;
-
 import java.time.LocalDate;
 
 public class AdoptionRecord {
-    LocalDate localDate = LocalDate.now();
 
     private int recordId;
     private Adopter adopter;
-    private BasicInfo animal;
+    private Pet animal;
+    private String status;          //状态: '领养' ‘归还’
     private LocalDate adoptionDate;
 
-    public AdoptionRecord(int recordId, Adopter adopter, BasicInfo animal) {
+    public AdoptionRecord(int recordId, Adopter adopter, Pet animal,LocalDate date) {
         this.recordId = recordId;
         this.adopter = adopter;
         this.animal = animal;
+        this.adoptionDate = date;
     }
 
     public AdoptionRecord() {
+
     }
 
     public int getRecordId() {
@@ -38,11 +37,29 @@ public class AdoptionRecord {
         this.adopter = adopter;
     }
 
-    public BasicInfo getAnimal() {
+    public Pet getAnimal() {
         return animal;
     }
 
-    public void setAnimal(BasicInfo animal) {
+    public void setAnimal(Pet animal) {
         this.animal = animal;
     }
+
+
+    public LocalDate getAdoptionDate() {
+        return adoptionDate;
+    }
+
+    public void setAdoptionDate(LocalDate adoptionDate) {
+        this.adoptionDate = adoptionDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }

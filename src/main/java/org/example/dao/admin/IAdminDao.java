@@ -1,4 +1,4 @@
-package org.example.dao;
+package org.example.dao.admin;
 
 import org.example.domain.Administrator;
 import org.example.domain.Adopter;

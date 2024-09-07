@@ -1,7 +1,7 @@
-package org.example.service;
+package org.example.service.adopter;
 
-import org.example.dao.IAdopterDao;
-import org.example.dao.AdopterDaoImpl;
+import org.example.dao.adopter.IAdopterDao;
+import org.example.dao.adopter.AdopterDaoImpl;
 import org.example.domain.Adopter;
 
 public class AdopterService implements IAdopterService {

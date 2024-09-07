@@ -1,7 +1,6 @@
-package org.example.dao;
+package org.example.dao.adopter;
 
 import org.example.domain.Adopter;
-import org.example.domain.Person;
 
 public interface IAdopterDao {
 

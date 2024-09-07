@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Adopter extends Person{
 
     private String address;
-    ArrayList<BasicInfo> adopInfo = new ArrayList<>();
+    ArrayList<Pet> adopInfo = new ArrayList<>();
 
     public Adopter() {
         super();
@@ -24,8 +24,8 @@ public class Adopter extends Person{
         this.address = address;
     }
 
-    public void addAdoptAnimal(BasicInfo basicInfo){
-        this.adopInfo.add(basicInfo);
+    public void addAdoptPet(Pet pet){
+        this.adopInfo.add(pet);
     }
 
     public void displayAdoptionInfo(){

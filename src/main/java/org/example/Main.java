@@ -2,10 +2,13 @@ package org.example;
 
 import org.example.domain.Administrator;
 import org.example.domain.Adopter;
-import org.example.service.AdministratorService;
-import org.example.service.IAdministratorService;
-import org.example.service.IAdopterService;
-import org.example.service.AdopterService;
+import org.example.domain.Pet;
+import org.example.service.administrator.AdministratorService;
+import org.example.service.administrator.IAdministratorService;
+import org.example.service.adopter.IAdopterService;
+import org.example.service.adopter.AdopterService;
+import org.example.service.shelter.IShelterService;
+import org.example.service.shelter.ShelterService;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -56,9 +59,14 @@ public class Main {
         administratorService.deleteAdopter(deleteId);*/
 
         //测试删除用户 根据name
-        System.out.print("输出删除用户的name:");
+        /*System.out.print("输出删除用户的name:");
         String deleteName = sc.next();
-        administratorService.deleteAdopter(deleteName);
+        administratorService.deleteAdopter(deleteName);*/
+
+        IShelterService shelterService = new ShelterService();
+        for(Pet pet : shelterService.getAllPets()){
+            System.out.println(pet.toString());
+        }
 
     }
 
