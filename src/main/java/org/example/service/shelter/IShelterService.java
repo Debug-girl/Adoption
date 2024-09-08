@@ -9,6 +9,10 @@ public interface IShelterService {
     public void deletePet(int id);
     public void deletePet(String name);
 
+    public Pet getPet(int id);
+
+    public Pet getPet(String name);
+
     /**
      * @param pet 需要更新的宠物对象,默认是以pet.petID来锁定对象并且更新
      */

@@ -13,6 +13,9 @@ public interface IShelterDao {
     public void deletePet(String name);
     public void updatePet(Pet pet);
 
+    public Pet getPet(int id);
+
+    public Pet getPet(String name);
 
     /**从收留所领养宠物
      * @param adopter 领养人对象

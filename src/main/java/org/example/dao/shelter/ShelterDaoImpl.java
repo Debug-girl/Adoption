@@ -137,6 +137,66 @@ public class ShelterDaoImpl implements IShelterDao {
     }
 
     @Override
+    public Pet getPet(int id) {
+        Connection connection = DBUtil.getConnection();
+        Pet pet = null;
+        try {
+            String sql = "SELECT * FROM shelter WHERE petID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);;
+            preparedStatement.setInt(1,id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                pet = new Pet();
+                pet.setPetID(rs.getInt("petID"));
+                pet.setPetName(rs.getString("petName"));
+                pet.setPetCategory(rs.getString("petCategory"));
+                pet.setPetAge(rs.getInt("petAge"));
+                pet.setPetSex(rs.getString("petSex"));
+                pet.setPetWeight(rs.getFloat("petWeight"));
+                pet.setPetInfo(rs.getString("petInfo"));
+                pet.setPetStatus(rs.getString("petStatus"));
+                break;
+            }
+            rs.close();
+            preparedStatement.close();
+            DBUtil.closeConnection(connection);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return pet;
+    }
+
+    @Override
+    public Pet getPet(String name) {
+        Connection connection = DBUtil.getConnection();
+        Pet pet = null;
+        try {
+            String sql = "SELECT * FROM shelter WHERE petName = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);;
+            preparedStatement.setString(1,name);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                pet = new Pet();
+                pet.setPetID(rs.getInt("petID"));
+                pet.setPetName(rs.getString("petName"));
+                pet.setPetCategory(rs.getString("petCategory"));
+                pet.setPetAge(rs.getInt("petAge"));
+                pet.setPetSex(rs.getString("petSex"));
+                pet.setPetWeight(rs.getFloat("petWeight"));
+                pet.setPetInfo(rs.getString("petInfo"));
+                pet.setPetStatus(rs.getString("petStatus"));
+                break;
+            }
+            rs.close();
+            preparedStatement.close();
+            DBUtil.closeConnection(connection);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return pet;
+    }
+
+    @Override
     public boolean adoption(Adopter adopter,Pet pet) {
         try {
             Connection connection = DBUtil.getConnection();
@@ -154,9 +214,6 @@ public class ShelterDaoImpl implements IShelterDao {
                 insertPs.executeUpdate();
                 insertPs.close();
             }
-
-            //增加领养的宠物
-            adopter.addAdoptPet(pet);
 
             updatePs.close();
             DBUtil.closeConnection(connection);

@@ -31,6 +31,16 @@ public class ShelterService implements IShelterService{
     }
 
     @Override
+    public Pet getPet(int id) {
+        return shelterDao.getPet(id);
+    }
+
+    @Override
+    public Pet getPet(String name) {
+        return shelterDao.getPet(name);
+    }
+
+    @Override
     public void updatePet(Pet pet) {
         shelterDao.updatePet(pet);
     }
