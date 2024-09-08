@@ -26,6 +26,7 @@ public class Main {
         }
 
     }
+
     public static void text(){
         Scanner sc = new Scanner(System.in);
         IAdopterService iAdopterService = new AdopterService();
@@ -34,9 +35,10 @@ public class Main {
             System.out.println(record.toString());
         }
     }
+
     public static void main(String[] args) throws SQLException {
         //try_test();
-        text();
+        //text();
         Menu menu = new Menu();
         menu.mainMenu();
 
