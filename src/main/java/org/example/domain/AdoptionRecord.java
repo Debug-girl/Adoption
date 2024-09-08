@@ -1,6 +1,6 @@
 package org.example.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class AdoptionRecord {
 
@@ -8,14 +8,14 @@ public class AdoptionRecord {
     private int adopterID;
     private int petID;
     private String status;          //状态: '领养' ‘归还’
-    private LocalDate adoptionDate;
+    private LocalDateTime adoptionDateTime;
 
-    public AdoptionRecord(int recordId, int adopterID, int petID,String status, LocalDate date) {
+    public AdoptionRecord(int recordId, int adopterID, int petID,String status, LocalDateTime date) {
         this.recordId = recordId;
         this.adopterID = adopterID;
         this.petID = petID;
         this.status = status;
-        this.adoptionDate = date;
+        this.adoptionDateTime = date;
     }
 
     public AdoptionRecord() {
@@ -47,12 +47,12 @@ public class AdoptionRecord {
     }
 
 
-    public LocalDate getAdoptionDate() {
-        return adoptionDate;
+    public LocalDateTime getAdoptionDateTime() {
+        return adoptionDateTime;
     }
 
-    public void setAdoptionDate(LocalDate adoptionDate) {
-        this.adoptionDate = adoptionDate;
+    public void setAdoptionDateTime(LocalDateTime adoptionDateTime) {
+        this.adoptionDateTime = adoptionDateTime;
     }
 
     public String getStatus() {
@@ -70,7 +70,7 @@ public class AdoptionRecord {
                 ", adopterID=" + adopterID +
                 ", petID=" + petID +
                 ", status='" + status + '\'' +
-                ", adoptionDate=" + adoptionDate +
+                ", adoptionDate=" + adoptionDateTime +
                 '}';
     }
 }

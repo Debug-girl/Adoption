@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class AdoptionRecordDaoImpl implements IAdoptionRecordDao {
                 int adopterID = rs.getInt("adopterID");
                 int petID = rs.getInt("petID");
                 String status = rs.getString("status");
-                LocalDate adoptionDate = rs.getDate("adoptionDate").toLocalDate();
+                LocalDateTime adoptionDate = rs.getTimestamp("adoptionDate").toLocalDateTime();
                 AdoptionRecord record = new AdoptionRecord(recordId, adopterID, petID,status, adoptionDate);
                 records.add(record);
             }
