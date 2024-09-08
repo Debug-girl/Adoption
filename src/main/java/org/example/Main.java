@@ -4,9 +4,15 @@ import org.example.controller.Menu;
 import org.example.dao.adoptionrecord.AdoptionRecordDaoImpl;
 import org.example.dao.adoptionrecord.IAdoptionRecordDao;
 import org.example.domain.AdoptionRecord;
+import org.example.domain.Pet;
+import org.example.service.adopter.AdopterService;
+import org.example.service.adopter.IAdopterService;
+import org.example.service.shelter.IShelterService;
+import org.example.service.shelter.ShelterService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
 
@@ -18,11 +24,19 @@ public class Main {
         for(AdoptionRecord adoptionRecord : adoptionRecordDao.getAllRecords()){
             System.out.println(adoptionRecord.toString());
         }
+
     }
-
+    public static void text(){
+        Scanner sc = new Scanner(System.in);
+        IAdopterService iAdopterService = new AdopterService();
+        int adopid = sc.nextInt();
+        for(AdoptionRecord record : iAdopterService.getAdoptionRecord(adopid)){
+            System.out.println(record.toString());
+        }
+    }
     public static void main(String[] args) throws SQLException {
-        try_test();
-
+        //try_test();
+        text();
         Menu menu = new Menu();
         menu.mainMenu();
 

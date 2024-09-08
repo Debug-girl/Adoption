@@ -199,4 +199,44 @@ public class ShelterDaoImpl implements IShelterDao {
         return false;
     }
 
+    @Override
+    public ArrayList<Pet> adoptable() {
+        ArrayList<Pet> pets = new ArrayList<>();
+        try {
+            Connection connection = DBUtil.getConnection();
+            String sql = "SELECT * FROM shelter WHERE petStatus = '待领养'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Pet pet = new Pet();
+                pet.setPetID(rs.getInt("petID"));
+                pet.setPetName(rs.getString("petName"));
+                pet.setPetCategory(rs.getString("petCategory"));
+                pet.setPetAge(rs.getInt("petAge"));
+                pet.setPetSex(rs.getString("petSex"));
+                pet.setPetWeight(rs.getFloat("petWeight"));
+                pet.setPetInfo(rs.getString("petInfo"));
+                pet.setPetStatus(rs.getString("petStatus"));
+                pets.add(pet);
+            }
+
+            rs.close();
+            ps.close();
+            DBUtil.closeConnection(connection);
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        for (Pet pet : pets){
+            System.out.println(pet);
+        }
+
+        return pets;
+    }
+
 }
+
+
+
+

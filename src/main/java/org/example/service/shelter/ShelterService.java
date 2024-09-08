@@ -35,4 +35,9 @@ public class ShelterService implements IShelterService{
         shelterDao.updatePet(pet);
     }
 
+    @Override
+    public ArrayList<Pet> adoptable() {
+        return shelterDao.adoptable();
+    }
+
 }

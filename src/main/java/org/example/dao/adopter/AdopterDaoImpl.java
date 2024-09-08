@@ -1,12 +1,16 @@
 package org.example.dao.adopter;
 
 import org.example.domain.Adopter;
+import org.example.domain.AdoptionRecord;
 import org.example.util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class AdopterDaoImpl implements IAdopterDao {
 
@@ -101,6 +105,40 @@ public class AdopterDaoImpl implements IAdopterDao {
 
         return adopter;
     }
+
+
+    @Override
+    public ArrayList<AdoptionRecord> getAdoptionRecord(int adopterID) {
+        ArrayList<AdoptionRecord> adoptionRecords = new ArrayList<>();
+
+        try {
+            // 获取数据库连接
+            Connection connection = DBUtil.getConnection();
+            String sql = "SELECT * FROM adoptionrecord WHERE adopterID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, adopterID);
+            ResultSet rs = ps.executeQuery();
+
+            // 遍历结果集并将记录添加到列表中
+            while (rs.next()) {
+                AdoptionRecord adoptionRecord = new AdoptionRecord();
+                adoptionRecord.setRecordId(rs.getInt("recordID"));
+                adoptionRecord.setAdopterID(rs.getInt("adopterID"));
+                adoptionRecord.setPetID(rs.getInt("petID"));
+                adoptionRecord.setStatus(rs.getString("status"));
+                adoptionRecord.setAdoptionDate(rs.getDate("adoptionDate").toLocalDate());
+                adoptionRecords.add(adoptionRecord);
+            }
+
+            // 关闭资源
+            DBUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return adoptionRecords;
+    }
+
 
 
 }

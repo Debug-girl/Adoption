@@ -29,4 +29,5 @@ public interface IShelterDao {
      */
     public boolean revert(Adopter adopter,Pet pet);
 
+    public ArrayList<Pet> adoptable();
 }
