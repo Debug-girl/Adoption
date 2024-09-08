@@ -14,4 +14,6 @@ public interface IAdopterDao {
     public Adopter updatePassword(String name,String password,String newPassword);
 
     public ArrayList<AdoptionRecord> getAdoptionRecord(int adopterID);
+    public boolean adoption(int adopterId,int petId);
+
 }

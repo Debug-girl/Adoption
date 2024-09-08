@@ -59,5 +59,21 @@ public class AdoptionRecordDaoImpl implements IAdoptionRecordDao {
         
     }
 
+    @Override
+    public boolean deleteAdoptionRecord(int recordId) {
+        String query = "DELETE FROM adoptionrecord WHERE recordId = ?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, recordId);
+            int affectedRows = pstmt.executeUpdate();
+
+            return affectedRows > 0; // Return true if deletion was successful
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

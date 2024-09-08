@@ -106,6 +106,47 @@ public class AdopterDaoImpl implements IAdopterDao {
         return adopter;
     }
 
+    @Override
+    public boolean adoption(int adopterId,int petId) {
+
+        try {
+            // 获取数据库连接
+            Connection connection = DBUtil.getConnection();
+
+            // 检查宠物是否待领养状态
+            String checkPetStatusSql = "SELECT petStatus FROM Shelter WHERE petID = ?";
+            PreparedStatement checkPs = connection.prepareStatement(checkPetStatusSql);
+            checkPs.setInt(1, petId);
+            ResultSet rs = checkPs.executeQuery();
+
+            if (rs.next() && rs.getString("petStatus").equals("待领养")) {
+                // 更新宠物状态为已领养
+                String updatePetStatusSql = "UPDATE Shelter SET petStatus = '已领养' WHERE petID = ?";
+                PreparedStatement updatePs = connection.prepareStatement(updatePetStatusSql);
+                updatePs.setInt(1, petId);
+                updatePs.executeUpdate();
+
+                // 写入领养记录
+                String insertAdoptionRecordSql = "INSERT INTO AdoptionRecord (adopterID, petID,status, adoptionDate) VALUES (?, ?,'领养',NOW())";
+                PreparedStatement insertPs = connection.prepareStatement(insertAdoptionRecordSql);
+                insertPs.setInt(1, adopterId);
+                insertPs.setInt(2, petId);
+                insertPs.executeUpdate();
+
+                System.out.println("宠物领养成功！");
+            } else {
+                System.err.println("宠物已经被领养了！");
+            }
+
+            DBUtil.closeConnection(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
 
     @Override
     public ArrayList<AdoptionRecord> getAdoptionRecord(int adopterID) {

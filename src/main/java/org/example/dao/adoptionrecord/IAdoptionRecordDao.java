@@ -13,4 +13,6 @@ public interface IAdoptionRecordDao {
 
     public boolean addAdoptionRecord(int adopterId, int petId,String status,LocalDate date);
 
+    public boolean deleteAdoptionRecord(int recordId);
+
 }
