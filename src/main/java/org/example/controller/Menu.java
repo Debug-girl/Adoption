@@ -1,15 +1,17 @@
 package org.example.controller;
 
-import org.example.dao.admin.IAdminDao;
 import org.example.dao.shelter.IShelterDao;
 import org.example.dao.shelter.ShelterDaoImpl;
 import org.example.domain.Administrator;
 import org.example.domain.Adopter;
+import org.example.domain.AdoptionRecord;
 import org.example.domain.Pet;
 import org.example.service.administrator.AdministratorService;
 import org.example.service.administrator.IAdministratorService;
 import org.example.service.adopter.AdopterService;
 import org.example.service.adopter.IAdopterService;
+import org.example.service.adoptionrecord.AdoptionRecordService;
+import org.example.service.adoptionrecord.IAdoptionRecordService;
 import org.example.service.shelter.IShelterService;
 import org.example.service.shelter.ShelterService;
 
@@ -18,7 +20,9 @@ import java.util.Scanner;
 public class Menu {
 
     IAdministratorService iAdministratorService = new AdministratorService();
-    IShelterDao iShelterDao = new ShelterDaoImpl();
+    IAdoptionRecordService iAdoptionRecordService = new AdoptionRecordService();
+    IShelterService iShelterService = new ShelterService();
+
     Scanner sc = new Scanner(System.in);
 
     public void mainMenu(){
@@ -80,7 +84,7 @@ public class Menu {
                     break;
                 }
                 case 3:{
-                    for (Pet pet : iShelterDao.getAllPets()) {
+                    for (Pet pet : iShelterService.getAllPets()) {
                         System.out.println(pet.toString());
                     }
                     break;
@@ -88,12 +92,12 @@ public class Menu {
                 case 4:{
                     System.out.println("请输入动物ID:");
                     int petID = sc.nextInt();
-                    for (Pet pet : iShelterDao.getAllPets()) {
+                    for (Pet pet : iShelterService.getAllPets()) {
                         if (petID == pet.getPetID()) {
                             System.out.println("请输入修改后的详情:");
                             String petInfo = sc.next();
                             pet.setPetInfo(petInfo);
-                            iShelterDao.updatePet(pet);
+                            iShelterService.updatePet(pet);
                         }
                     }
                     break;
@@ -126,16 +130,24 @@ public class Menu {
                     pet.setPetInfo(petInfo);
 
                     pet.setPetStatus("待领养");
-                    iShelterDao.addPet(pet);
+                    iShelterService.addPet(pet);
                     break;
                 }
                 case 6:{
                     System.out.println("请输入动物ID:");
                     int petID = sc.nextInt();
-                    iShelterDao.deletePet(petID);
+                    Pet pet = iShelterService.getPet(petID);
+                    if(pet == null){
+                        System.err.println("宠物不存在!");
+                        break;
+                    }
+                    iShelterService.deletePet(petID);
                     break;
                 }
                 case 7:{
+                    for(AdoptionRecord record : iAdoptionRecordService.getAllRecords()){
+                        System.out.println(record.toString());
+                    }
                     break;
                 }
                 case 8:System.exit(0);break;
@@ -190,9 +202,9 @@ public class Menu {
                     break;
                 }
                 case 4:{
-                    System.out.println("请输入领养人ID:");
-                    int adopterID = sc.nextInt();
-                    iAdopterService.getAdoptionRecord(adopterID);
+                    for(AdoptionRecord record : iAdopterService.getAdoptionRecord(adopter.getId())){
+                        System.out.println(record.toString());
+                    }
                     break;
                 }
                 case 5:System.exit(0);break;
