@@ -29,11 +29,11 @@ public class Menu {
 
         switch (choice){
             case 1:userMenu();
-            case 2:adminMeun();
+            case 2:adminMenu();
         }
     }
 
-    private void adminMeun() {
+    private void adminMenu() {
 
         System.out.println("请输入账号密码:");
         System.out.print("账号:");
@@ -47,92 +47,95 @@ public class Menu {
         }else {
             System.err.println("账号或密码错误!");
         }
+
         while (true){
-        System.out.println(" --- 管理员菜单 --- ");
-        System.out.println("1.获取所有用户信息");
-        System.out.println("2.删除用户信息");
-        System.out.println("3.查看所有动物信息");
-        System.out.println("4.更新动物信息");
-        System.out.println("5.添加新动物");
-        System.out.println("6.删除动物");
-        System.out.println("7.查看领养记录");
-        System.out.println("8.退出");
+            System.out.println(" --- 管理员菜单 --- ");
+            System.out.println("1.获取所有用户信息");
+            System.out.println("2.删除用户信息");
+            System.out.println("3.查看所有动物信息");
+            System.out.println("4.更新动物信息");
+            System.out.println("5.添加新动物");
+            System.out.println("6.删除动物");
+            System.out.println("7.查看领养记录");
+            System.out.println("8.退出");
 
-        int choice = sc.nextInt();
-        System.out.flush();
-        switch (choice) {
-            case 1:{
-                for (Adopter adopter : iAdministratorService.getAllAdopters()) {
-                    System.out.println(adopter.toString());
-                }
-                break;
-            }
-            case 2:{
-                System.out.println("请输入用户ID:");
-                int userID = sc.nextInt();
-                iAdministratorService.deleteAdopter(userID);
-                break;
-            }
-            case 3:{
-                for (Pet pet : iShelterDao.getAllPets()) {
-                    System.out.println(pet.toString());
-                }
-                break;
-            }
-            case 4:{
-                System.out.println("请输入动物ID:");
-                int petID = sc.nextInt();
-                for (Pet pet : iShelterDao.getAllPets()) {
-                    if (petID == pet.getPetID()) {
-                        System.out.println("请输入修改后的详情:");
-                        String petInfo = sc.next();
-                        pet.setPetInfo(petInfo);
-                        iShelterDao.updatePet(pet);
+            int choice = sc.nextInt();
+            System.out.flush();
+            switch (choice) {
+                case 1:{
+                    for (Adopter adopter : iAdministratorService.getAllAdopters()) {
+                        System.out.println(adopter.toString());
                     }
+                    break;
                 }
-                break;
+                case 2:{
+                    System.out.println("请输入用户ID:");
+                    int userID = sc.nextInt();
+                    iAdministratorService.deleteAdopter(userID);
+                    break;
+                }
+                case 3:{
+                    for (Pet pet : iShelterDao.getAllPets()) {
+                        System.out.println(pet.toString());
+                    }
+                    break;
+                }
+                case 4:{
+                    System.out.println("请输入动物ID:");
+                    int petID = sc.nextInt();
+                    for (Pet pet : iShelterDao.getAllPets()) {
+                        if (petID == pet.getPetID()) {
+                            System.out.println("请输入修改后的详情:");
+                            String petInfo = sc.next();
+                            pet.setPetInfo(petInfo);
+                            iShelterDao.updatePet(pet);
+                        }
+                    }
+                    break;
+                }
+                case 5:{
+                    Pet pet = new Pet();
+
+                    System.out.println("请输入动物名字:");
+                    String petName = sc.next();
+                    pet.setPetName(name);
+
+                    System.out.println("请输入动物种类:");
+                    String petCategory = sc.next();
+                    pet.setPetCategory(petCategory);
+
+                    System.out.println("请输入动物年龄:");
+                    int petAge = sc.nextInt();
+                    pet.setPetAge(petAge);
+
+                    System.out.println("请输入动物性别:");
+                    String petSex = sc.next();
+                    pet.setPetSex(petSex);
+
+                    System.out.println("请输入动物体重:");
+                    float petWeight = sc.nextFloat();
+                    pet.setPetWeight(petWeight);
+
+                    System.out.println("请输入动物简介:");
+                    String petInfo = sc.next();
+                    pet.setPetInfo(petInfo);
+
+                    pet.setPetStatus("待领养");
+                    iShelterDao.addPet(pet);
+                    break;
+                }
+                case 6:{
+                    System.out.println("请输入动物ID:");
+                    int petID = sc.nextInt();
+                    iShelterDao.deletePet(petID);
+                    break;
+                }
+                case 7:{
+                    break;
+                }
+                case 8:System.exit(0);break;
+                default:System.err.println("无效的选择!");break;
             }
-            case 5:{
-                Pet pet = new Pet();
-
-                System.out.println("请输入动物名字:");
-                String petName = sc.next();
-                pet.setPetName(name);
-
-                System.out.println("请输入动物种类:");
-                String petCategory = sc.next();
-                pet.setPetCategory(petCategory);
-
-                System.out.println("请输入动物年龄:");
-                int petAge = sc.nextInt();
-                pet.setPetAge(petAge);
-
-                System.out.println("请输入动物性别:");
-                String petSex = sc.next();
-                pet.setPetSex(petSex);
-
-                System.out.println("请输入动物体重:");
-                float petWeight = sc.nextFloat();
-                pet.setPetWeight(petWeight);
-
-                System.out.println("请输入动物简介:");
-                String petInfo = sc.next();
-                pet.setPetInfo(petInfo);
-
-                pet.setPetStatus("待领养");
-                iShelterDao.addPet(pet);
-                break;
-            }
-            case 6:{
-                System.out.println("请输入动物ID:");
-                int petID = sc.nextInt();
-                iShelterDao.deletePet(petID);
-                break;
-            }
-            case 7:{break;}
-            case 8:System.exit(0);break;
-            default:System.err.println("无效的选择!");break;
-        }
         }
     }
 
