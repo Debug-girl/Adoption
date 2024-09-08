@@ -14,4 +14,5 @@ public interface IShelterService {
      */
     public void updatePet(Pet pet);
 
+    public ArrayList<Pet> adoptable();
 }

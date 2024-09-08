@@ -10,6 +10,8 @@ import org.example.service.administrator.AdministratorService;
 import org.example.service.administrator.IAdministratorService;
 import org.example.service.adopter.AdopterService;
 import org.example.service.adopter.IAdopterService;
+import org.example.service.shelter.IShelterService;
+import org.example.service.shelter.ShelterService;
 
 import java.util.Scanner;
 
@@ -150,6 +152,7 @@ public class Menu {
         System.out.print("密码:");
         String pwd = sc.next();
         IAdopterService iAdopterService = new AdopterService();
+        IShelterService iShelterService = new ShelterService();
         Adopter adopter = iAdopterService.login(name,pwd);
 
         if (adopter != null){
@@ -176,7 +179,7 @@ public class Menu {
                     break;
                 }
                 case 2:{
-
+                    iShelterService.adoptable();
                     break;
                 }
                 case 3:{
@@ -187,8 +190,9 @@ public class Menu {
                     break;
                 }
                 case 4:{
-
-
+                    System.out.println("请输入领养人ID:");
+                    int adopterID = sc.nextInt();
+                    iAdopterService.getAdoptionRecord(adopterID);
                     break;
                 }
                 case 5:System.exit(0);break;
