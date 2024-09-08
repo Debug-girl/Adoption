@@ -180,7 +180,10 @@ public class Menu {
                     break;
                 }
                 case 3:{
-
+                    System.out.flush();
+                    System.out.print("请输入宠物ID:");
+                    int petID = sc.nextInt();
+                    iAdopterService.adoption(adopter.getId(),petID);
                     break;
                 }
                 case 4:{

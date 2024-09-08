@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Adopter extends Person{
 
     private String address;
-    ArrayList<Pet> adopInfo = new ArrayList<>();
 
     public Adopter() {
         super();
@@ -24,19 +23,10 @@ public class Adopter extends Person{
         this.address = address;
     }
 
-    public void addAdoptPet(Pet pet){
-        this.adopInfo.add(pet);
-    }
-
-    public void displayAdoptionInfo(){
-
-    }
-
     @Override
     public String toString() {
         return "Adopter{" +
-                "address='" + address + '\'' +
-                ", adopInfo=" + adopInfo +
+                "address='" + address + '\''+
                 ", id=" + id +
                 ", username='" + name + '\'' +
                 ", password='" + password + '\'' +
