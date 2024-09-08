@@ -10,4 +10,6 @@ public interface IAdopterDao {
 
     public Adopter updatePassword(String name,String password,String newPassword);
 
+    public boolean adoption(int adopterId,int petId);
+
 }

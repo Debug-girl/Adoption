@@ -9,4 +9,7 @@ public interface IAdopterService {
     public Adopter login(String name, String password);
 
     public void updatePassword(String name,String password,String newPassword);
+
+    public boolean adoption(int adopterId,int petId);
+
 }
