@@ -155,6 +155,7 @@ public class ShelterDaoImpl implements IShelterDao {
                 insertPs.close();
             }
 
+            //增加领养的宠物
             adopter.addAdoptPet(pet);
 
             updatePs.close();
