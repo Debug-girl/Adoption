@@ -5,15 +5,16 @@ import java.time.LocalDate;
 public class AdoptionRecord {
 
     private int recordId;
-    private Adopter adopter;
-    private Pet animal;
+    private int adopterID;
+    private int petID;
     private String status;          //状态: '领养' ‘归还’
     private LocalDate adoptionDate;
 
-    public AdoptionRecord(int recordId, Adopter adopter, Pet animal,LocalDate date) {
+    public AdoptionRecord(int recordId, int adopterID, int petID,String status, LocalDate date) {
         this.recordId = recordId;
-        this.adopter = adopter;
-        this.animal = animal;
+        this.adopterID = adopterID;
+        this.petID = petID;
+        this.status = status;
         this.adoptionDate = date;
     }
 
@@ -29,20 +30,20 @@ public class AdoptionRecord {
         this.recordId = recordId;
     }
 
-    public Adopter getAdopter() {
-        return adopter;
+    public int getAdopterID() {
+        return adopterID;
     }
 
-    public void setAdopter(Adopter adopter) {
-        this.adopter = adopter;
+    public void setAdopterID(int adopterID) {
+        this.adopterID = adopterID;
     }
 
-    public Pet getAnimal() {
-        return animal;
+    public int getPetID() {
+        return petID;
     }
 
-    public void setAnimal(Pet animal) {
-        this.animal = animal;
+    public void setPetID(int petID) {
+        this.petID = petID;
     }
 
 
@@ -62,4 +63,14 @@ public class AdoptionRecord {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "AdoptionRecord{" +
+                "recordId=" + recordId +
+                ", adopterID=" + adopterID +
+                ", petID=" + petID +
+                ", status='" + status + '\'' +
+                ", adoptionDate=" + adoptionDate +
+                '}';
+    }
 }

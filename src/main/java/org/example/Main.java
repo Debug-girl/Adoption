@@ -1,22 +1,27 @@
 package org.example;
 
 import org.example.controller.Menu;
-import org.example.domain.Administrator;
-import org.example.domain.Adopter;
-import org.example.domain.Pet;
-import org.example.service.administrator.AdministratorService;
-import org.example.service.administrator.IAdministratorService;
-import org.example.service.adopter.IAdopterService;
-import org.example.service.adopter.AdopterService;
-import org.example.service.shelter.IShelterService;
-import org.example.service.shelter.ShelterService;
+import org.example.dao.adoptionrecord.AdoptionRecordDaoImpl;
+import org.example.dao.adoptionrecord.IAdoptionRecordDao;
+import org.example.domain.AdoptionRecord;
 
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
 
+    public static void try_test(){
+        IAdoptionRecordDao adoptionRecordDao = new AdoptionRecordDaoImpl();
+
+        adoptionRecordDao.addAdoptionRecord(1,1,"领养", LocalDate.now());
+
+        for(AdoptionRecord adoptionRecord : adoptionRecordDao.getAllRecords()){
+            System.out.println(adoptionRecord.toString());
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
+        try_test();
 
         Menu menu = new Menu();
         menu.mainMenu();
