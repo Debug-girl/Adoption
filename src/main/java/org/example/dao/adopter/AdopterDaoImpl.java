@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class AdopterDaoImpl implements IAdopterDao {
 
@@ -167,7 +165,7 @@ public class AdopterDaoImpl implements IAdopterDao {
                 adoptionRecord.setAdopterID(rs.getInt("adopterID"));
                 adoptionRecord.setPetID(rs.getInt("petID"));
                 adoptionRecord.setStatus(rs.getString("status"));
-                adoptionRecord.setAdoptionDate(rs.getDate("adoptionDate").toLocalDate());
+                adoptionRecord.setAdoptionDateTime(rs.getTimestamp("adoptionDate").toLocalDateTime());
                 adoptionRecords.add(adoptionRecord);
             }
 
