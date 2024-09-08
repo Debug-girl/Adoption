@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dao.admin.IAdminDao;
 import org.example.dao.shelter.IShelterDao;
 import org.example.dao.shelter.ShelterDaoImpl;
 import org.example.domain.Administrator;
@@ -7,6 +8,8 @@ import org.example.domain.Adopter;
 import org.example.domain.Pet;
 import org.example.service.administrator.AdministratorService;
 import org.example.service.administrator.IAdministratorService;
+import org.example.service.adopter.AdopterService;
+import org.example.service.adopter.IAdopterService;
 
 import java.util.Scanner;
 
@@ -141,5 +144,54 @@ public class Menu {
 
     private void userMenu() {
         //测试提交前不更新
+        System.out.println("请输入账号密码:");
+        System.out.print("账号:");
+        String name = sc.next();
+        System.out.print("密码:");
+        String pwd = sc.next();
+        IAdopterService iAdopterService = new AdopterService();
+        Adopter adopter = iAdopterService.login(name,pwd);
+
+        if (adopter != null){
+            System.out.println("登录成功!欢迎"+adopter.getName());
+        }else {
+            System.err.println("账号或密码错误!");
+        }
+
+        while (true){
+            System.out.println(" --- 用户菜单 --- ");
+            System.out.println("1.修改登录密码");
+            System.out.println("2.查看所有待领养动物");
+            System.out.println("3.领养动物");
+            System.out.println("4.查看个人领养记录");
+            System.out.println("5.退出");
+
+            int choice = sc.nextInt();
+            System.out.flush();
+            switch (choice) {
+                case 1:{
+                    System.out.println("请输入新密码:");
+                    String newPwd = sc.next();
+                    iAdopterService.updatePassword(adopter.getName(),adopter.getPassword(),newPwd);
+                    break;
+                }
+                case 2:{
+
+                    break;
+                }
+                case 3:{
+
+                    break;
+                }
+                case 4:{
+
+
+                    break;
+                }
+                case 5:System.exit(0);break;
+                default:System.err.println("无效的选择!");break;
+            }
+        }
+    }
     }
 }
