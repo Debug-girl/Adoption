@@ -52,8 +52,6 @@ public class AdopterDaoImpl implements IAdopterDao {
                 loggedInAdopter.setName(rs.getString("name"));
                 loggedInAdopter.setPassword(rs.getString("password"));
                 loggedInAdopter.setAddress(rs.getString("address"));
-            } else {
-                System.err.println("用户名或密码错误！");
             }
 
             DBUtil.closeConnection(connection);

@@ -37,8 +37,8 @@ public class Menu {
         int choice = sc.nextInt();
 
         switch (choice){
-            case 1:userMenu();
-            case 2:adminMenu();
+            case 1:userMenu();break;
+            case 2:adminMenu();break;
         }
     }
 
@@ -54,7 +54,12 @@ public class Menu {
         if (adminLogin != null){
             System.out.println("登录成功!欢迎"+adminLogin.getName());
         }else {
-            System.err.println("账号或密码错误!");
+            System.err.println("账号或密码错误!请重新输入");
+            System.out.print("账号:");
+            name = sc.next();
+            System.out.print("密码:");
+            pwd = sc.next();
+            adminLogin = iAdministratorService.login(name,pwd);
         }
 
         while (true){
@@ -170,7 +175,12 @@ public class Menu {
         if (adopter != null){
             System.out.println("登录成功!欢迎"+adopter.getName());
         }else {
-            System.err.println("账号或密码错误!");
+            System.err.println("账号或密码错误!请重新输入");
+            System.out.print("\n账号:");
+            name = sc.next();
+            System.out.print("密码:");
+            pwd = sc.next();
+            adopter = iAdopterService.login(name,pwd);
         }
 
         while (true){

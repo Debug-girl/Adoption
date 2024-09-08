@@ -28,8 +28,6 @@ public class AdminDaoImpl implements IAdminDao {
                 loginAdmin.setId(rs.getInt("adminID"));
                 loginAdmin.setName(rs.getString("adminName"));
                 loginAdmin.setPassword(rs.getString("password"));
-            } else {
-                System.err.println("用户名或密码错误！");
             }
 
         } catch (SQLException e) {
