@@ -35,6 +35,7 @@ public class AdopterDaoImpl implements IAdopterDao {
         return true;
     }
 
+
     @Override
     public Adopter login(String name,String password) {
         Adopter loggedInAdopter = null;

@@ -46,7 +46,7 @@ public class DBUtil {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("数据库连接已关闭");
+             //   System.out.println("数据库连接已关闭");
             } catch (SQLException e) {
                 System.out.println("未能关闭连接");
                 e.printStackTrace();

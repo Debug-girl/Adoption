@@ -65,12 +65,11 @@ public class AdoptionRecord {
 
     @Override
     public String toString() {
-        return "AdoptionRecord{" +
-                "recordId=" + recordId +
-                ", adopterID=" + adopterID +
-                ", petID=" + petID +
-                ", status='" + status + '\'' +
-                ", adoptionDate=" + adoptionDateTime +
-                '}';
+        return
+                "记录ID:" + recordId +
+                ", 领养者ID:" + adopterID +
+                ", 宠物ID:" + petID +
+                ", 状态:'" + status + '\'' +
+                ", 领养时间:" + adoptionDateTime ;
     }
 }

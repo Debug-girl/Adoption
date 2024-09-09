@@ -118,6 +118,18 @@ public class Pet {
                 '}';
     }
 
+    public void disPlay(){
+        System.out.println("动物ID:"+getPetID());
+        System.out.println("动物姓名:"+getPetName());
+        System.out.println("动物种类:"+getPetCategory());
+        System.out.println("动物年龄:"+getPetAge());
+        System.out.println("动物性别:"+getPetSex());
+        System.out.println("动物体重:"+getPetWeight());
+        System.out.println("动物详情:"+getPetInfo());
+        System.out.println("动物状态:"+getPetStatus());
+        System.out.println();
+
+    }
 
 
 }

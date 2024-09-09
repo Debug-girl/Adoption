@@ -286,7 +286,7 @@ public class ShelterDaoImpl implements IShelterDao {
             exception.printStackTrace();
         }
         for (Pet pet : pets){
-            System.out.println(pet);
+            pet.disPlay();
         }
 
         return pets;

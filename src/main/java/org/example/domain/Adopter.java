@@ -1,7 +1,5 @@
 package org.example.domain;
 
-import java.util.ArrayList;
-
 public class Adopter extends Person{
 
     private String address;
@@ -31,5 +29,14 @@ public class Adopter extends Person{
                 ", username='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void disPlay(){
+        System.out.println("用户ID:"+getId());
+        System.out.println("用户姓名:"+getName());
+        System.out.println("用户密码:"+getPassword());
+        System.out.println("用户地址:"+getAddress());
+        System.out.println();
+
     }
 }

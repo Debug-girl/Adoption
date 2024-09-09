@@ -55,7 +55,7 @@ public class Menu {
             System.out.println("登录成功!欢迎"+adminLogin.getName());
         }else {
             System.err.println("账号或密码错误!请重新输入");
-            System.out.print("账号:");
+            System.out.print("\n账号:");
             name = sc.next();
             System.out.print("密码:");
             pwd = sc.next();
@@ -78,7 +78,7 @@ public class Menu {
             switch (choice) {
                 case 1:{
                     for (Adopter adopter : iAdministratorService.getAllAdopters()) {
-                        System.out.println(adopter.toString());
+                        adopter.disPlay();
                     }
                     break;
                 }
@@ -90,7 +90,7 @@ public class Menu {
                 }
                 case 3:{
                     for (Pet pet : iShelterService.getAllPets()) {
-                        System.out.println(pet.toString());
+                        pet.disPlay();
                     }
                     break;
                 }
@@ -99,9 +99,10 @@ public class Menu {
                     int petID = sc.nextInt();
                     for (Pet pet : iShelterService.getAllPets()) {
                         if (petID == pet.getPetID()) {
-                            System.out.println("请输入修改后的详情:");
-                            String petInfo = sc.next();
-                            pet.setPetInfo(petInfo);
+                            pet.disPlay();
+                            System.out.println("更改姓名:");
+                            String petName = sc.next();
+                            pet.setPetName(petName);
                             iShelterService.updatePet(pet);
                         }
                     }
@@ -112,7 +113,7 @@ public class Menu {
 
                     System.out.println("请输入动物名字:");
                     String petName = sc.next();
-                    pet.setPetName(name);
+                    pet.setPetName(petName);
 
                     System.out.println("请输入动物种类:");
                     String petCategory = sc.next();
@@ -131,7 +132,8 @@ public class Menu {
                     pet.setPetWeight(petWeight);
 
                     System.out.println("请输入动物简介:");
-                    String petInfo = sc.next();
+
+                    String petInfo = new Scanner(System.in).nextLine();
                     pet.setPetInfo(petInfo);
 
                     pet.setPetStatus("待领养");
@@ -178,9 +180,14 @@ public class Menu {
             System.err.println("账号或密码错误!请重新输入");
             System.out.print("\n账号:");
             name = sc.next();
+
             System.out.print("密码:");
             pwd = sc.next();
             adopter = iAdopterService.login(name,pwd);
+            if(adopter==null){
+                System.out.println("二次登陆失败");
+                System.exit(0);
+            }
         }
 
         while (true){
