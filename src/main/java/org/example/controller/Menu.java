@@ -70,8 +70,9 @@ public class Menu {
             System.out.println("4.更新动物信息");
             System.out.println("5.添加新动物");
             System.out.println("6.删除动物");
-            System.out.println("7.查看领养记录");
-            System.out.println("8.退出");
+            System.out.println("7.查看所有领养记录");
+            System.out.println("8.查看指定用户领养记录");
+            System.out.println("9.退出");
 
             int choice = sc.nextInt();
             System.out.flush();
@@ -157,7 +158,18 @@ public class Menu {
                     }
                     break;
                 }
-                case 8:System.exit(0);break;
+                case 8:{
+                    System.out.print("请输入用户ID:");
+                    int adopterID = sc.nextInt();
+                    //从获取到的所有记录中过滤出指定的用户
+                    for(AdoptionRecord record : iAdoptionRecordService.getAllRecords()){
+                        if(record.getAdopterID() == adopterID){
+                            System.out.println(record.toString());
+                        }
+                    }
+                    break;
+                }
+                case 9:System.exit(0);break;
                 default:System.err.println("无效的选择!");break;
             }
         }
